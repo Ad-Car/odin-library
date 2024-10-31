@@ -20,6 +20,8 @@ book3 = new Book("Cibola Burn", "James R Corey", 899, true)
 myLibrary.push(book1);
 myLibrary.push(book2);
 myLibrary.push(book3);
+
+
 function addBookToLibrary() {
 
 }
@@ -27,15 +29,27 @@ function addBookToLibrary() {
 const main = document.querySelector(".main");
 
 for (book of myLibrary) {
+	
 	const card = document.createElement("div");
 	const title = document.createElement("p");
+	const author = document.createElement("p");
 	const pages = document.createElement("p");
+	const statusInfo = document.createElement("p");
+	const bookNo = myLibrary.indexOf(book) + 1;
+	const bookNoHolder = document.createElement("span");
+	console.log(bookNo);
 	main.appendChild(card);
 	card.classList.add("card");
-	card.appendChild(title);
-	title.textContent = `${book.title} by ${book.author}`;
-	card.appendChild(pages);
-	pages.textContent = `${book.pages} pages`;
-	console.log(book.title, book.author, book.pages);
+		card.appendChild(title);
+		title.textContent = `${book.title}`;
+		card.appendChild(author);
+		author.textContent = `by ${book.author}`;
+		card.appendChild(pages);
+		pages.textContent = `${book.pages} pages`;
+		card.appendChild(statusInfo)
+		statusInfo.textContent = (book.haveRead ? "I've read it": "I haven't read yet"); 
+		statusInfo.appendChild(bookNoHolder);
+		statusInfo.classList.add("status-info");
+		bookNoHolder.textContent = bookNo;
 };
 

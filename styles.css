@@ -1,6 +1,7 @@
 body * {
 	margin: 0px;
 	padding: 0px;
+	box-sizing: border-box;
 }
 
 .container {
@@ -26,9 +27,15 @@ body * {
 
 .card {
 	height: 100px;
-	background-color: orange;
+	background-color: cream;
 	border-radius: 8px;
 	margin: 10px;
 	padding: 10px;
+	border: solid 2px;
+	border-left: solid 8px;
 }
 
+.status-info {
+	display: flex;
+	justify-content: space-between;
+}
