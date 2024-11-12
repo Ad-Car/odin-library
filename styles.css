@@ -19,7 +19,7 @@ body * {
 .main {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(250px, 250px));
-	grid-template-rows: repeat(auto-fit,minmax(100px, 100px));
+	grid-template-rows: repeat(auto-fit, minmax(100px, 100px));
 	grid-column: 1;
 	grid-row: 2 / 3;
 	gap: 15px;
@@ -39,3 +39,9 @@ body * {
 	display: flex;
 	justify-content: space-between;
 }
+
+.form-container div {
+	display: flex;
+	flex-direction: column;
+}
+

@@ -8,12 +8,34 @@
 <body>
 	<div class="container">
 		<div class="nav">
-			<button class="add">Add book</button>
-			<button class="delete">Delete book</button>
+			<button class="add" id="addBookButton">Add book</button>
 		</div>
 		<div class="main">
 		</div>
 	</div>
+	<dialog id="addBookDialog">
+		<form>
+			<div class="form-container">
+			<div>
+				<label for="title">Title</label>
+				<input type="text" id="title" name="title" required>
+			</div>
+			<div>
+				<label for="author">Author</label>
+				<input type="text" id="author" name="author" required>
+			</div>
+			<div>
+				<label for="no-of-pages">Number of pages</label>
+				<input type="text" id="no-of-pages" name="no-of-pages">
+			</div>
+			<div>
+				</div>
+				<button id="cancel" value="cancel" >Cancel</button>
+				<button id="confirm-add" value="default">Add to library</button>
+			</div>
+		</form>
+	</dialog>
+
 <script src="main.js"></script>
 </body>
 </html>
