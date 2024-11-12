@@ -36,22 +36,35 @@ addBookButton.addEventListener("click", () => {
 	addBookDialog.showModal();
 });
 
-confirmAddButton.addEventListener("click", (e) => {
+/*
+	confirmAddButton.addEventListener("click", (e) => {
 	e.preventDefault()
 	addBookDialog.close();
 });
+*/
 
 addBookDialog.addEventListener("close", () => {
-	const formData = new FormData(addBookDialog.querySelector('form'));
-	const title = formData.get('title');
-	const author = formData.get('author');
-	const pages = formData.get('no-of-pages');
+	const result = addBookDialog.returnValue;
+	if (result === "add") {
+		const formData = new FormData(addBookDialog.querySelector('form'));
+		const title = formData.get('title');
+		const author = formData.get('author');
+		const pages = formData.get('no-of-pages');
+		const book = new Book(title, author, pages, false)
+		if ((title && author && pages)) addBookToLibrary(book);
+		displayLibrary();
+		console.log('Book added to library');
+} else if ( result === '' ) {
+	console.log('Dialog closed with <ESC>');
+} else {
+	console.log('Dialog cancelled');
+}
+	const inputs = addBookDialog.querySelectorAll('input');
+	inputs.forEach(input => {
+		input.value = '';
+	});
 
-	const book = new Book(title, author, pages, false)
-	addBookToLibrary(book);
-	displayLibrary();
 });
-
 
 function displayLibrary() {
 	const existingCards = document.querySelectorAll(".card");

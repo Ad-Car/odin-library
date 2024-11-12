@@ -14,15 +14,15 @@
 		</div>
 	</div>
 	<dialog id="addBookDialog">
-		<form>
+		<form method="dialog">
 			<div class="form-container">
 			<div>
 				<label for="title">Title</label>
-				<input type="text" id="title" name="title" required>
+				<input type="text" id="title" name="title">
 			</div>
 			<div>
 				<label for="author">Author</label>
-				<input type="text" id="author" name="author" required>
+				<input type="text" id="author" name="author">
 			</div>
 			<div>
 				<label for="no-of-pages">Number of pages</label>
@@ -30,8 +30,8 @@
 			</div>
 			<div>
 				</div>
-				<button id="cancel" value="cancel" >Cancel</button>
-				<button id="confirm-add" value="default">Add to library</button>
+				<button id="cancel" value="cancel">Cancel</button>
+				<button id="confirm-add" type="submit" value="add">Add to library</button>
 			</div>
 		</form>
 	</dialog>
