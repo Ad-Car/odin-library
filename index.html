@@ -1,41 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>My Library</title>
-	<link rel="stylesheet" href="styles.css">
-</head>
-<body>
-	<div class="container">
-		<div class="nav">
-			<button class="add" id="addBookButton">Add book</button>
+	<head>
+		<meta charset="UTF-8">
+		<title>My Library</title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<div class="container">
+			<div class="nav">
+				<button class="add" id="addBookButton">Add book</button>
+			</div>
+			<div class="main">
+			</div>
 		</div>
-		<div class="main">
+		<div class="modal-container">
+			<dialog id="addBookDialog">
+				<form method="dialog">
+					<div class="form-container">
+						<div>
+							<label for="title">Title</label>
+							<input type="text" id="title" name="title">
+						</div>
+						<div>
+							<label for="author">Author</label>
+							<input type="text" id="author" name="author">
+						</div>
+						<div>
+							<label for="no-of-pages">Number of pages</label>
+							<input type="text" id="no-of-pages" name="no-of-pages">
+						</div>
+						<div>
+						</div>
+						<button id="cancel" value="cancel">Cancel</button>
+						<button id="confirm-add" type="submit" value="add">Add to library</button>
+					</div>
+				</form>
+			</dialog>
 		</div>
-	</div>
-	<dialog id="addBookDialog">
-		<form method="dialog">
-			<div class="form-container">
-			<div>
-				<label for="title">Title</label>
-				<input type="text" id="title" name="title">
-			</div>
-			<div>
-				<label for="author">Author</label>
-				<input type="text" id="author" name="author">
-			</div>
-			<div>
-				<label for="no-of-pages">Number of pages</label>
-				<input type="text" id="no-of-pages" name="no-of-pages">
-			</div>
-			<div>
-				</div>
-				<button id="cancel" value="cancel">Cancel</button>
-				<button id="confirm-add" type="submit" value="add">Add to library</button>
-			</div>
-		</form>
-	</dialog>
-
-<script src="main.js"></script>
-</body>
+		<script src="main.js"></script>
+	</body>
 </html>
