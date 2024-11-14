@@ -17,6 +17,12 @@ function addBookToLibrary(book) {
 	myLibrary.push(book)
 }
 
+function removeBookFromLibrary(bookId) {
+	console.log(`Removing book ${bookId}`);
+	myLibrary.splice(bookId-1,1);
+	displayLibrary();
+};
+
 book1 = new Book("Lord of the Rings", "J.R.R Tolkein", 999,true);
 addBookToLibrary(book1);
 book2 = new Book("Leviathan Wakes", "James R Corey", 1000, true);
@@ -36,12 +42,6 @@ addBookButton.addEventListener("click", () => {
 	addBookDialog.showModal();
 });
 
-/*
-	confirmAddButton.addEventListener("click", (e) => {
-	e.preventDefault()
-	addBookDialog.close();
-});
-*/
 
 addBookDialog.addEventListener("close", () => {
 	const result = addBookDialog.returnValue;
@@ -63,7 +63,6 @@ addBookDialog.addEventListener("close", () => {
 	inputs.forEach(input => {
 		input.value = '';
 	});
-
 });
 
 function displayLibrary() {
@@ -73,7 +72,6 @@ function displayLibrary() {
 			card.remove();
 		})
 	};
-
 	const main = document.querySelector(".main");
 	for (book of myLibrary) {
 		const card = document.createElement("div");
@@ -83,6 +81,7 @@ function displayLibrary() {
 		const statusInfo = document.createElement("p");
 		const bookNo = myLibrary.indexOf(book) + 1;
 		const bookNoHolder = document.createElement("span");
+		const deleteButton = document.createElement("button");
 		main.appendChild(card);
 		card.classList.add("card");
 		card.appendChild(title);
@@ -91,7 +90,16 @@ function displayLibrary() {
 		author.textContent = `by ${book.author}`;
 		card.appendChild(pages);
 		pages.textContent = `${book.pages} pages`;
-		card.appendChild(statusInfo)
+		card.appendChild(statusInfo);
+		card.appendChild(deleteButton);
+		deleteButton.textContent = "Remove";
+		deleteButton.id = bookNo;
+		deleteButton.type = "button";
+		deleteButton.addEventListener("click", function() {
+			const bookId = this.id
+			removeBookFromLibrary(bookId)
+		});
+		deleteButton.classList.add("delete-button");
 		statusInfo.textContent = (book.haveRead ? "I've read it": "I haven't read yet"); 
 		statusInfo.appendChild(bookNoHolder);
 		statusInfo.classList.add("status-info");
