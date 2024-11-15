@@ -23,12 +23,24 @@ function removeBookFromLibrary(bookId) {
 	displayLibrary();
 };
 
+function changeReadStatus(bookId) {
+	console.log(`Toggle status of book ${bookId}`);
+	console.log(myLibrary[bookId-1]);
+	const status = myLibrary[bookId-1].haveRead;
+	console.log(status);
+	myLibrary[bookId-1].haveRead = !status;
+	console.log(myLibrary[bookId-1]);
+	displayLibrary();
+};
+
 book1 = new Book("Lord of the Rings", "J.R.R Tolkein", 999,true);
 addBookToLibrary(book1);
 book2 = new Book("Leviathan Wakes", "James R Corey", 1000, true);
 addBookToLibrary(book2);
 book3 = new Book("Cibola Burn", "James R Corey", 899, true)
 addBookToLibrary(book3);
+book4 = new Book("Leviathan Falls", "James R Corey", 999, false);
+addBookToLibrary(book4);
 
 const addbookButton = document.getElementById("addBookButton");
 const addBookDialog = document.getElementById("addBookDialog");
@@ -41,7 +53,6 @@ window.addEventListener('load', () => {
 addBookButton.addEventListener("click", () => {
 	addBookDialog.showModal();
 });
-
 
 addBookDialog.addEventListener("close", () => {
 	const result = addBookDialog.returnValue;
@@ -78,10 +89,11 @@ function displayLibrary() {
 		const title = document.createElement("p");
 		const author = document.createElement("p");
 		const pages = document.createElement("p");
-		const statusInfo = document.createElement("p");
+		const statusInfo = document.createElement("div");
 		const bookNo = myLibrary.indexOf(book) + 1;
 		const bookNoHolder = document.createElement("span");
 		const deleteButton = document.createElement("button");
+		const toggleButton = document.createElement("button");
 		main.appendChild(card);
 		card.classList.add("card");
 		card.appendChild(title);
@@ -91,18 +103,32 @@ function displayLibrary() {
 		card.appendChild(pages);
 		pages.textContent = `${book.pages} pages`;
 		card.appendChild(statusInfo);
+		card.appendChild(toggleButton);
 		card.appendChild(deleteButton);
+
+		toggleButton.textContent = "Status";
+		toggleButton.id = bookNo;
+		toggleButton.type = "button";
+
 		deleteButton.textContent = "Remove";
 		deleteButton.id = bookNo;
 		deleteButton.type = "button";
+
+		toggleButton.addEventListener("click", function() {
+			const bookId = this.id
+			changeReadStatus(bookId)
+		});
+
 		deleteButton.addEventListener("click", function() {
 			const bookId = this.id
 			removeBookFromLibrary(bookId)
 		});
 		deleteButton.classList.add("delete-button");
-		statusInfo.textContent = (book.haveRead ? "I've read it": "I haven't read yet"); 
+		statusInfo.textContent = (book.haveRead ? "Read": "Not read"); 
+/*		statusInfo.appendChild(deleteButton);*/
 		statusInfo.appendChild(bookNoHolder);
 		statusInfo.classList.add("status-info");
+		
 		bookNoHolder.textContent = bookNo;
 	};
 };

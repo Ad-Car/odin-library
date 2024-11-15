@@ -26,13 +26,17 @@ body * {
 }
 
 .card {
-	height: 100px;
+	box-sizing: border-box;
+	height: auto;
 	background-color: cream;
 	border-radius: 8px;
-	margin: 10px;
 	padding: 10px;
 	border: solid 2px;
 	border-left: solid 8px;
+}
+
+button.delete-button {
+	margin: 0px;
 }
 
 .status-info {
