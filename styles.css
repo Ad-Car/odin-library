@@ -35,11 +35,16 @@ body * {
 	border-left: solid 8px;
 }
 
-button.delete-button {
+button.delete-button, button.toggle-button {
 	margin: 0px;
 }
 
 .status-info {
+	display: flex;
+	justify-content: space-between;
+}
+
+.buttons {
 	display: flex;
 	justify-content: space-between;
 }
@@ -68,3 +73,9 @@ button.delete-button {
 #addBookDialog label, button {
 	margin-top: 10px;
 }
+
+.book-icon, .remove-book-icon, .book-check-icon {
+	height: 1.5rem;
+}
+
+
