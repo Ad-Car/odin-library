@@ -19,7 +19,7 @@ body * {
 .main {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(250px, 250px));
-	grid-template-rows: repeat(auto-fit, minmax(100px, 100px));
+	grid-template-rows: repeat(auto-fit, minmax(120px, 120px));
 	grid-column: 1;
 	grid-row: 2 / 3;
 	gap: 15px;
@@ -45,6 +45,12 @@ button.delete-button, button.toggle-button {
 }
 
 .buttons {
+	display: flex;
+	justify-content: space-between;
+}
+
+
+.icons {
 	display: flex;
 	justify-content: space-between;
 }
@@ -78,4 +84,7 @@ button.delete-button, button.toggle-button {
 	height: 1.5rem;
 }
 
+.remove-book-icon:hover {
+	transform: translate(0,10%);
+}
 

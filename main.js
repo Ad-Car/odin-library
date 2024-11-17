@@ -87,6 +87,13 @@ function displayLibrary() {
 		const pages = document.createElement("p");
 		const statusInfo = document.createElement("p");
 		const buttons = document.createElement("p");
+		const icons = document.createElement("p");
+		icons.classList.add("icons");
+		const statusIconHolder = document.createElement("span");
+		statusIconHolder.classList.add("status-icon-holder");
+		const removeIconHolder = document.createElement("span");
+		removeIconHolder.classList.add("remove-icon-holder");
+
 		const bookNo = myLibrary.indexOf(book) + 1;
 		const bookNoHolder = document.createElement("span");
 		const deleteButton = document.createElement("button");
@@ -116,10 +123,14 @@ function displayLibrary() {
 		buttons.appendChild(deleteButton);
 		buttons.classList.add("buttons");
 
-		card.appendChild(bookIcon);
-		card.appendChild(removeBookIcon);
-		card.appendChild(bookCheckIcon);
-
+		card.appendChild(icons);
+		icons.appendChild(statusIconHolder);
+		icons.appendChild(removeIconHolder);
+		statusIconHolder.appendChild(bookIcon);
+		statusIconHolder.appendChild(bookCheckIcon);
+		removeIconHolder.appendChild(removeBookIcon);
+		removeBookIcon.id = `removeBookIcon${bookNo}`;
+		
 		toggleButton.textContent = "Update Status";
 		toggleButton.id = bookNo;
 		toggleButton.type = "button";
@@ -129,11 +140,26 @@ function displayLibrary() {
 		deleteButton.type = "button";
 		deleteButton.classList.add("delete-button");
 
+
+		removeBookIcon.addEventListener("click", function() {
+			const bookId = this.id
+			removeBookFromLibrary(bookId);
+		});
+
+		/*
+		removeBookIcon.addEventListener("mouseover", function() {
+			console.log(this.id);
+			const target = document.querySelector(`#${this.id}`);
+			target.classList.add("icon-mouseover");
+			console.log(target);
+		});
+		*/
 		toggleButton.addEventListener("click", function() {
 			const bookId = this.id
 			changeReadStatus(bookId)
 		});
 
+		
 		deleteButton.addEventListener("click", function() {
 			const bookId = this.id
 			removeBookFromLibrary(bookId)
