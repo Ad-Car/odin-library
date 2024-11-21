@@ -29,6 +29,7 @@ function changeReadStatus(bookId) {
 	displayLibrary();
 };
 
+/* TEST DATA */
 book1 = new Book("Lord of the Rings", "J.R.R Tolkein", 999,true);
 addBookToLibrary(book1);
 book2 = new Book("Leviathan Wakes", "James R Corey", 1000, true);
@@ -37,6 +38,7 @@ book3 = new Book("Cibola Burn", "James R Corey", 899, true)
 addBookToLibrary(book3);
 book4 = new Book("Leviathan Falls", "James R Corey", 999, false);
 addBookToLibrary(book4);
+/* END OF TEST DATA */
 
 const addbookButton = document.getElementById("addBookButton");
 const addBookDialog = document.getElementById("addBookDialog");
@@ -86,7 +88,6 @@ function displayLibrary() {
 		const author = document.createElement("p");
 		const pages = document.createElement("p");
 		const statusInfo = document.createElement("p");
-		const buttons = document.createElement("p");
 		const icons = document.createElement("p");
 		icons.classList.add("icons");
 		const statusIconHolder = document.createElement("span");
@@ -117,59 +118,35 @@ function displayLibrary() {
 		author.textContent = `by ${book.author}`;
 		card.appendChild(pages);
 		pages.textContent = `${book.pages} pages`;
-		card.appendChild(statusInfo);
-		card.appendChild(buttons);
-		buttons.appendChild(toggleButton);
-		buttons.appendChild(deleteButton);
-		buttons.classList.add("buttons");
-
 		card.appendChild(icons);
 		icons.appendChild(statusIconHolder);
 		icons.appendChild(removeIconHolder);
-		statusIconHolder.appendChild(bookIcon);
-		statusIconHolder.appendChild(bookCheckIcon);
+		if (book.haveRead === false) {
+			statusIconHolder.appendChild(bookIcon);
+		} else {
+			statusIconHolder.appendChild(bookCheckIcon);
+		}
+
 		removeIconHolder.appendChild(removeBookIcon);
 		removeBookIcon.id = `removeBookIcon${bookNo}`;
-		
-		toggleButton.textContent = "Update Status";
-		toggleButton.id = bookNo;
-		toggleButton.type = "button";
-		toggleButton.classList.add("toggle-button");
-		deleteButton.textContent = "Remove";
-		deleteButton.id = bookNo;
-		deleteButton.type = "button";
-		deleteButton.classList.add("delete-button");
-
+		bookIcon.id = bookNo;
+		bookCheckIcon.id = bookNo;
 
 		removeBookIcon.addEventListener("click", function() {
 			const bookId = this.id
 			removeBookFromLibrary(bookId);
 		});
 
-		/*
-		removeBookIcon.addEventListener("mouseover", function() {
-			console.log(this.id);
-			const target = document.querySelector(`#${this.id}`);
-			target.classList.add("icon-mouseover");
-			console.log(target);
-		});
-		*/
-		toggleButton.addEventListener("click", function() {
+		bookIcon.addEventListener("click", function() {
+			console.log("book icon clicked");
 			const bookId = this.id
 			changeReadStatus(bookId)
 		});
-
 		
-		deleteButton.addEventListener("click", function() {
+		bookCheckIcon.addEventListener("click", function() {
+			console.log("book icon clicked");
 			const bookId = this.id
-			removeBookFromLibrary(bookId)
+			changeReadStatus(bookId)
 		});
-		
-		statusInfo.textContent = (book.haveRead ? "Read": "Not read"); 
-		statusInfo.appendChild(bookNoHolder);
-		statusInfo.classList.add("status-info");
-		
-		bookNoHolder.textContent = bookNo;
 	};
 };
-
